@@ -1,5 +1,6 @@
 import React from 'react'
 import {Button, Box, Typography} from '@mui/material'
+import Login from './Login'
 
 function Header() {
     return (
@@ -7,9 +8,8 @@ function Header() {
         <Typography sx={{fontSize: '50px', fontWeight: '700'}}>
             NFT Fans
             </Typography>
-        <Button variant="outlined" sx={{backgroundColor: 'orange', color: 'white', height: '70%'}}>
-            Connect with wallet
-        </Button>
+
+        <Login/>
         </Box>
 
     )
