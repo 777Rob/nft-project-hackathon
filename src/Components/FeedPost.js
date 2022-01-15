@@ -3,6 +3,7 @@ import { Button, Typography, Box, IconButton } from '@mui/material';
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import { MdOutlineScreenShare } from 'react-icons/md';
 import {FcLikePlaceholder, FcLike} from 'react-icons/fc'
+// Add comments, style, link to users profile, avatar,
 
 export function FeedPost(props) {
     const [liked, toLike] = useState(props.liked)

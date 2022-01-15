@@ -7,6 +7,9 @@ import {
   Route,
 } from "react-router-dom";
 import HomeView from './Views/HomeView'
+import ProfileView from './Views/ProfileView'
+import ChannelView from './Views/ChannelView'
+
 
 function App() {
   return (
@@ -15,6 +18,8 @@ function App() {
       <LeftBar />
       <Routes>
         <Route path="/" element={<HomeView />} />
+        <Route path="/Profile" element={<ProfileView />} />
+        <Route path="/Channel" element={<ChannelView />} />
       </Routes>
       <RightBar />
     </div>

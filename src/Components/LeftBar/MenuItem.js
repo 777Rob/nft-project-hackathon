@@ -3,6 +3,8 @@ import Icon from '@mui/material/Icon';
 import Box from '@mui/material/Box'
 import React from 'react'
 
+// Make links/pages think about ideas about pages we should have 
+
 function MenuItem(props) {
     return (
         <Box 

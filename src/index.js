@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {Box, Typography} from '@mui/material'
+import {Box} from '@mui/material'
 import Header from './Components/Header'
 
 ReactDOM.render(
 
   <React.StrictMode>
     <Box className="App" sx={{justifyContent: 'center', margin: '20px'}}>
-<Header />
+      <Header />
     </Box>
     <App />
   </React.StrictMode>,

@@ -4,11 +4,10 @@ import {FiHome} from 'react-icons/fi';
 import {BsCollection} from 'react-icons/bs';
 import {MdOutlineAccountCircle} from 'react-icons/md';
 import MenuItem from './MenuItem';
-import AbcIcon from '@mui/icons-material/Abc';
 
+// Make it fixed-size and fixed in 1 place
 
 function LeftBar() {
-
 
     return (
         <Box sx={{display: 'flex', 

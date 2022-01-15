@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, AppBar, Box, Typography} from '@mui/material'
+import {Button, Box, Typography} from '@mui/material'
 
 function Header() {
     return (
