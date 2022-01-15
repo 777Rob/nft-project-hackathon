@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import {Box} from '@mui/material'
 import Header from './Components/Header'
 
+// https://docs.moralis.io/introduction/readme#what-are-moralis-servers We can store users
+
 ReactDOM.render(
 
   <React.StrictMode>

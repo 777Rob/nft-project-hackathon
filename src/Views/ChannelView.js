@@ -1,12 +1,15 @@
 import React from 'react'
+import {Box} from '@mui/material'
 
-// Consider using https://ourzora.github.io/nft-components/?path=/docs/about-customcomponentdocs--page 
 
 function ChannelView() {
+    
     return (
-        <div>
-            
-        </div>
+        <Box sx={{backgroundColor: '#f5f5f5', display: 'flex', flexDirection: 'column', flexGrow: '1', border: '2px solid orange', borderRadius: '25px'}}>
+            {/* Banner */}
+            {/* Info(Posts,Subs....)  */}
+            {/* Posts */}
+        </Box>
     )
 }
 
