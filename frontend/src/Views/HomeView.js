@@ -3,6 +3,19 @@ import { FormControl,Accordion, AccordionSummary, AccordionDetails, Button, Typo
 import {FeedPost} from './../Components/FeedPost'
 
 
+
+import { styled } from '@mui/material/styles';
+
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
 function HomeView() {
     const [value, setValue] = useState('');
     
@@ -16,15 +29,16 @@ function HomeView() {
     };
 
     return (
-        <Box sx={{backgroundColor: '#f5f5f5', display: 'flex', flexDirection: 'column', flexGrow: '1', border: '2px solid orange', borderRadius: '25px'}}>
-            
+        /*<Box sx={{backgroundColor: '#f5f5f5', display: 'flex', flexDirection: 'column', flexGrow: '1', border: '2px solid orange', borderRadius: '25px'}}>*/
+        <Grid item xs={6}>
+        <Item>  
             <Typography sx={{fontSize: '45px', fontWeight: '500', alignSelf: 'center'}}>Feed</Typography>
 
         {/* Make a seperate component*/}
 
             <FormControl sx={{margin: '10px', marginBottom:'50px', borderBottom: '3px solid orange'}}>
 
-            <TextField
+            <TextField fullWidth 
           id="outlined-multiline-flexible"
           label="Add Description"
           multiline
@@ -63,7 +77,9 @@ function HomeView() {
           author = "0x04200x04200x04200x04200x04200x04200x0420"
         liked = {true}
           />
-        </Box>
+          </Item>
+        </Grid>
+        /*</Box>*/
     )
 }
 

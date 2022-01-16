@@ -5,11 +5,26 @@ import { MdOutlineScreenShare } from 'react-icons/md';
 import {FcLikePlaceholder, FcLike} from 'react-icons/fc'
 // Add comments, style, link to users profile, avatar,
 
+import { styled } from '@mui/material/styles';
+
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
 export function FeedPost(props) {
     const [liked, toLike] = useState(props.liked)
 
     return (
         <Box sx={{ display: 'flex', padding: '15px', flexDirection: 'column', flexGrow: '1', border: '2px solid orange', borderRadius: '5px', margin: '10px' }}>
+        
+        {/*<Grid item xs={6}>
+          <Item>*/ }
             <Typography sx={{ fontSize: '25px', fontWeight: '600' }}>{props.title}</Typography>
             <Typography>@{props.author}</Typography>
             <img alt= "imag" src={props.image} />
@@ -26,5 +41,9 @@ export function FeedPost(props) {
                 </Button>
             </Box>
         </Box>
+
+        /* </Item>
+        </Grid>*/ 
+    
     );
 }

@@ -17,7 +17,7 @@ ReactDOM.render(
   <React.StrictMode>
     <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
       <Box className="App" sx={{ justifyContent: 'center', margin: '20px' }}>
-        <Header />
+        
       </Box>
       <App />
     </MoralisProvider>
