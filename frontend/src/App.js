@@ -15,10 +15,6 @@ import Grid from "@mui/material/Grid";
 
 import LoginPage from "./Components/LoginPage";
 import { useMoralis } from "react-moralis";
-//https://docs.polygon.technology/docs/develop/network-details/network/
-// https://glc619ascyws.usemoralis.com:2083/apps/moralisDashboard/browser/_EthAddress
-// uBeFeLlrSR
-// nYGdoI7x3r
 
 function App() {
 
@@ -54,4 +50,4 @@ function App() {
 
 export default App;
 
-// https://www.framer.com/motion/
+
