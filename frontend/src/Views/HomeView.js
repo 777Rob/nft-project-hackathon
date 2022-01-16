@@ -1,86 +1,74 @@
-import React, {useState} from 'react'
-import { FormControl,Accordion, AccordionSummary, AccordionDetails, Button, Typography, Box, TextField } from '@mui/material'
-import {FeedPost} from './../Components/FeedPost'
+import React, { useState } from "react";
+import { FeedPost } from "./../Components/FeedPost";
 
+import { styled } from "@mui/material/styles";
 
-
-import { styled } from '@mui/material/styles';
-
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+import Autocomplete from "@mui/material/Autocomplete";
+import PostForm from "./../Components/PostForm";
+import { useMoralisQuery } from "react-moralis";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
   color: theme.palette.text.secondary,
 }));
 
 function HomeView() {
-    const [value, setValue] = useState('');
-    
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    };
-    const [expanded, setExpanded] = React.useState('panel2');
+  const { data, error, isLoading } = useMoralisQuery("Posts");
 
-    const handleChange2 = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel : false);
-    };
+  if (error) {
+    return <span>error - posts query</span>;
+  }
 
-    return (
-        /*<Box sx={{backgroundColor: '#f5f5f5', display: 'flex', flexDirection: 'column', flexGrow: '1', border: '2px solid orange', borderRadius: '25px'}}>*/
-        <Grid item xs={6}>
-        <Item>  
-            <Typography sx={{fontSize: '45px', fontWeight: '500', alignSelf: 'center'}}>Feed</Typography>
+  if (isLoading) {
+    return <span></span>;
+  }
 
-        {/* Make a seperate component*/}
+  //return <pre>{JSON.stringify(data, null, 2)}</pre>;
 
-            <FormControl sx={{margin: '10px', marginBottom:'50px', borderBottom: '3px solid orange'}}>
+  const postArray = JSON.stringify(data, null, 2);
+  const postParse = JSON.parse(postArray);
+  //return postArray;
 
-            <TextField fullWidth 
-          id="outlined-multiline-flexible"
-          label="Add Description"
-          multiline
-          minRows={2}
-          value={value}
-          onChange={handleChange}
-          sx={{backgroundColor: 'white'}}
+  return (
+    <Grid item xs={6}>
+      <Item>
+        {/*
+        <Autocomplete
+          freeSolo
+          id="free-solo-2-demo"
+          disableClearable
+          /*options={top100Films.map((option) => option.title)}
+            /*renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Search input"
+                InputProps={{
+                  ...params.InputProps,
+                  type: 'search',
+                }}
+              />
+              )}
+              
+        */}
+        <PostForm />
+        {postParse.map((item, i) => (
+          <FeedPost
+            image={item.img}
+            title={item.title}
+            post={item.post}
+            author={item.author_id}
+            createdAt={item.createdAt}
+            liked={true}
+            current_id={i}
           />
-
-
-          <Accordion sx={{marginTop: '15px', marginBottom: '15px'}}expanded={expanded === 'panel1'} onChange={handleChange2('panel1')}>
-        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>Select nft</Typography>
-        </AccordionSummary>
-
-        {/* Make it show scrollable grid of recently purchased nfts */}
-
-        <AccordionDetails>
-          <Typography>
-            Grid with recently added nfts
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-
-      {/* Add settings for post royaltes per share  */}
-
-          <Button sx={{marginBottom:'15px', backgroundColor: 'orange', color: 'white', fontSize: '20px', fontWeight: '600'}}>
-            Post 
-          </Button>
-          </FormControl>
-
-          <FeedPost 
-          image= "https://i.skyrock.net/3335/65843335/pics/2640498136_small_1.jpg"
-          title = "New nft! Cool nft"
-          post = "This is a comment about my new NFT !"
-          author = "0x04200x04200x04200x04200x04200x04200x0420"
-        liked = {true}
-          />
-          </Item>
-        </Grid>
-        /*</Box>*/
-    )
+        ))}
+      </Item>
+    </Grid>
+  );
 }
 
-export default HomeView
+export default HomeView;

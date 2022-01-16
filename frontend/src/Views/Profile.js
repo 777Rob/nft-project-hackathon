@@ -13,40 +13,13 @@ import ProfileMenu from "../Components/ProfileMenu/ProfileMenu";
 import { useMoralis } from "react-moralis";
 import AddIcon from "@mui/icons-material/Add";
 import UploadBanner from "./UploadBanner";
-import axios from "axios";
+import { useParams } from "react-router-dom";
 
-
-
-
-function ProfileView() {
+function Profile() {
+  const params = useParams();
+  console.log(params);
   const { authenticate, isAuthenticated, user } = useMoralis();
-  
-  const options = {
-    method: 'GET',
-    url: 'https://api.nftport.xyz/v0/me/mints',
-    params: {chain: 'rinkeby'},
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: 'd0d50a65-da05-4d1f-aec0-0741bf8fbc62'
-    }
-  };
-  
-  
-  const handleClick = () => {
-    axios(options)
-    .then(function (response) {
-      const parsed = JSON.parse(JSON.stringify(response)).data
-      console.log(parsed.minted_nfts);
-      setNfts(parsed.minted_nfts);
-      
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  };
-  
-  
-  const [nfts, setNfts] = useState(false)
+
   if (!isAuthenticated) {
     return (
       <div>
@@ -54,13 +27,12 @@ function ProfileView() {
       </div>
     );
   }
-  
+
   return (
-    <Box sx={{ marginTop: "25px" }}>
-      <Button onClick={handleClick}>Fetch</Button>
+    <Box sx={{ marginTop: "20px", maxWidth: 800, maxHeight: 600 }}>
       <Card sx={{ maxWidth: 800, maxHeight: 600 }}>
         <img
-          style={{ maxWidth: "100%", objectFit: "contain" }}
+          style={{ objectFit: "contain" }}
           alt="Profile ban"
           src={user.get("profilebanner")}
         />
@@ -72,10 +44,9 @@ function ProfileView() {
           sx={{ width: 128, height: 128, mx: "auto", marginTop: "-168px" }}
         />
       </Card>
-      {nfts && nfts.map(nft => <p>TokenID: {nft.token_id}</p>)}
       <ProfileMenu />
     </Box>
   );
 }
 
-export default ProfileView;
+export default Profile;
