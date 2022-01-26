@@ -38,7 +38,8 @@ function ProfileView() {
       const parsed = JSON.parse(JSON.stringify(response)).data
       console.log(parsed.minted_nfts);
       setNfts(parsed.minted_nfts);
-      
+    }).then(function (response){
+      console.log(JSON.stringify(nfts))
     })
     .catch(function (error) {
       console.error(error);
@@ -72,7 +73,7 @@ function ProfileView() {
           sx={{ width: 128, height: 128, mx: "auto", marginTop: "-168px" }}
         />
       </Card>
-      {nfts && nfts.map(nft => <p>TokenID: {nft.token_id}</p>)}
+      {nfts && nfts.map(nft => <p>TokenID: {nft.token_id}<img src={nft.img}/></p>)}
       <ProfileMenu />
     </Box>
   );

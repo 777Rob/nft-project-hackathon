@@ -12,6 +12,7 @@ import {
 import axios from "axios";
 import UploadImage from "./../Views/UploadImage";
 import { useMoralis, useMoralisFile } from "react-moralis";
+import LoadingButton from '@mui/lab/LoadingButton';
 
 function PostForm() {
   const { user, setUserData, authenticate, isAuthenticated } = useMoralis();
@@ -84,10 +85,16 @@ function PostForm() {
           post={post}
           onChange={handleChange}
           sx={{ backgroundColor: "white" }}
-        />
+          />
 
+          {transaction && (
+            <Typography>{transaction.transaction_external_url}</Typography>
+            )}
         {/* Upload */}
-        <Button
+        <Box sx={{justifyContent: 'stretch'}}>
+
+        <LoadingButton 
+        fullWidth
           variant="contained"
           component="label"
           onChange={(e) => {
@@ -95,15 +102,12 @@ function PostForm() {
             console.log(e.target.files[0]);
           }}
           sx={{ width: "250px", mx: "auto", mt: "25px" }}
-        >
+          >
           Upload NFT
           <input type="file" hidden />
-        </Button>
+        </LoadingButton >
 
         {/* Add settings for post royaltes per share  */}
-        {transaction && (
-          <Typography>{transaction.transaction_external_url}</Typography>
-        )}
         <Button
           sx={{
             marginBottom: "15px",
@@ -113,9 +117,11 @@ function PostForm() {
             fontWeight: "600",
           }}
           onClick={handleFinal}
-        >
+          >
           Post
         </Button>
+          </Box>
+
         {/*</FormControl>*/}
       </Card>
     </Box>
