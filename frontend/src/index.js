@@ -3,24 +3,29 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Box } from "@mui/material";
+import { Box,Button } from "@mui/material";
 import Header from "./Components/Header";
 import { MoralisProvider } from "react-moralis";
 
-const APP_ID = "RlI6uEHxipiqoxFkxbdPdzrXfaK2t9zcb7GVM9Pk";
-const SERVER_URL = "https://glc619ascyws.usemoralis.com:2053/server";
-// https://glc619ascyws.usemoralis.com:2083/apps/moralisDashboard/browser/_Role
+// const APP_ID = "RlI6uEHxipiqoxFkxbdPdzrXfaK2t9zcb7GVM9Pk";
+// const SERVER_URL = "https://glc619ascyws.usemoralis.com:2053/server";
+// // https://glc619ascyws.usemoralis.com:2083/apps/moralisDashboard/browser/_Role
+const APP_ID = process.env.REACT_APP_APP_ID
+const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 ReactDOM.render(
-  <React.StrictMode>
-    <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
+  <MoralisProvider
+    appId={APP_ID}
+    serverUrl={SERVER_URL}
+  >
+    <React.StrictMode>
       <Box
         className="App"
         sx={{ justifyContent: "center", margin: "20px" }}
       ></Box>
       <App />
-    </MoralisProvider>
-  </React.StrictMode>,
+    </React.StrictMode>
+  </MoralisProvider>,
   document.getElementById("root")
 );
 

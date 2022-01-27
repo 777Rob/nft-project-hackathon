@@ -21,8 +21,10 @@ function App() {
   const { authenticate, isAuthenticated, isAuthenticating, logout, user } = useMoralis();
 
   if (!isAuthenticated) {
-    return (
-        <LoginPage />
+    return (<Box>
+      {process.env.APP_ID}
+      <LoginPage />
+    </Box>
     );
   }
 
